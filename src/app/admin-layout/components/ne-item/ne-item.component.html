@@ -1,0 +1,76 @@
+
+<div class="container">
+
+  <div class="col-md-8 offset-2 mt-4">
+      <div class="card p-4">
+    <form novalidate>
+        <div class="form-group">
+          <label for="exampleInputEmail1">ISBN</label>
+          <input type="txt" class="form-control" name="isbn" [(ngModel)]="item.isbn" id="isbn" aria-describedby="emailHelp" placeholder="Enter ISBN Number" required>
+
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Title</label>
+          <input type="txt" class="form-control" name="title" [(ngModel)]="item.title" id="title" placeholder="Enter tile of the item" required>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Auther</label>
+            <input type="txt" class="form-control" name ="auther" [(ngModel)]="item.auther" id="auther name" placeholder="Enter auther name" required>
+          </div>
+
+
+<div class="form-group col-md-4">
+    <label for="contactMethod">Select Category</label>
+    <select
+        name="contactMethod"
+        id="contactMethod"
+        class="form-control "
+        [(ngModel)]="item.category">
+        <option  value="1">BOOK</option>
+        <option  value="2">CD</option>
+    </select>
+</div>
+        <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="submitNewItem()">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isSuccess" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+                <div class="modal-header justify-content-center">
+                 <div class="offset-5"></div>
+                  <div class="icon-box text-center">
+                    <i class="material-icons"></i>
+                  </div>
+
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body text-center">
+                  <h4>Great!</h4>
+                  <p>Your Item has been added successfully.</p>
+                </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="isError" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                    <div class="modal-header-delete justify-content-center">
+                     <div class="offset-5"></div>
+                      <div class="icon-box text-center">
+                        <i class="material-icons"></i>
+                      </div>
+
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body text-center">
+                      <h4>Sorry!</h4>
+                      <p>Your Item has not been added successfully.</p>
+                    </div>
+            </div>
+          </div>
+        </div>
+

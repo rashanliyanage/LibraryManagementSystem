@@ -1,0 +1,91 @@
+<div class="pt-5">
+ <div class="btn-group">
+    <button type="button" class="btn btn-success">Select Category</button>
+    <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <span class="sr-only">Toggle Dropdown</span>
+    </button>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" (click)="getAllItemById(1)" >BOOK</a>
+      <a class="dropdown-item" (click)="getAllItemById(2)">CD</a>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="p-4">
+
+<table class="table" id="table_id" >
+  <thead>
+    <tr>
+      <th scope="col">ISBN</th>
+      <th scope="col">Title</th>
+      <th scope="col">Auther</th>
+      <th scope="col">Borrow</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of items ">
+      <th scope="row">{{item.ISBN}}</th>
+      <td>{{item.title}}</td>
+      <td>{{item.auther}}</td>
+      <td><a (click)="setBorrowId(item.ISBN)" data-toggle="modal" data-target="#exampleModalCenter"><span class="badge badge-pill badge-primary p-1" >Borrow</span></a>
+      </td>
+
+      <td><a (click)="deleteItem(item.id)" data-toggle="modal" data-target="#exampleModal"><span class="badge badge-pill badge-danger p-1" >Delete Item</span></a></td>
+    </tr>
+
+  </tbody>
+</table>
+</div>
+
+<div *ngIf="isDeleted" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+            <div class="modal-header-delete justify-content-center">
+             <div class="offset-5"></div>
+              <div class="icon-box text-center">
+                <i class="material-icons"></i>
+              </div>
+
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body text-center">
+              <h4>Great!</h4>
+              <p>Your Item has been deleted successfully.</p>
+            </div>
+    </div>
+  </div>
+</div>
+<div *ngIf ="showBorrowModel">
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+            <div class="offset-4"></div>
+          <h5 class="modal-title text-center text-white" id="exampleModalLongTitle " style="font-size: 30px;">Borrow Book</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Book ISBN numbser</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" name="isbn" [(ngModel)]="itemBorrow.isbn"  disabled value="{{itemBorrow.isbn}}" placeholder="{{itemBorrow.isbn}}" aria-describedby="emailHelp" placeholder="Enter email">
+                </div>
+                <div class="form-group col-md-8 p-0">
+                  <label for="exampleInputPassword1">UserId</label>
+                  <input type="text" class="form-control" name="userId" [(ngModel)]="itemBorrow.userId" id="exampleInputPassword1" placeholder="user id">
+                </div>
+              </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="submitBorrow()">submit your borrow</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
